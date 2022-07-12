@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>무무</title>
+    <!--JQuery 관련 CDN Link    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="../static/CSS/write.css" rel="stylesheet">
+    <script>
+        function cancel() {
+            window.location.href = "/community"
+        }
+
+        function submit() {
+            let postTitle = $('#postTitle').val()
+            let movieTitle = $('#movieTitle').val()
+            let content = $('#content').val()
+            let writer = $('#writer').val()
+            console.log(postTitle,movieTitle,content,writer )
+            $.ajax({
+                type: "POST",
+                url: "/write",
+                data: {postTitle_give: postTitle,movieTitle_give: movieTitle, content_give: content, writer_give: writer },
+                success: function (response) { // 성공하면
+                    alert(response["msg"]);
+                    window.location.href = "/community"
+                }
+            })
+        }
+    </script>
+
+</head>
+<body>
+<div id="header">
+</div>
+
+<main>
+    <div class="ui_container">
+
+        <div class="ui_border">
+            <h3 class="border_tit">새 글</h3>
+            <div class="border_cont">
+                <input type="text" value="제목" class="inq_field" id="postTitle"/>
+                 <input type="text" value="영화 제목" class="inq_field" id="movieTitle"/>
+                <input type="text" value="작성자" class="inq_field" id="writer"/>
+                <textarea name="" id="content" cols="30" rows="10">내용을 입력해 주세요.</textarea>
+            </div>
+            <div class="btn_area">
+                <input type="button" value="등록" onclick="submit()" class="ui_btn btn_inline btn_emph">
+                <input type="button" value="취소" onclick="cancel()" class="ui_btn btn_inline">
+            </div>
+            <br>
+        </div>
+    </div>
+</main>
+
+
+<div id="footer">
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#header").load("./header");  // 원하는 파일 경로를 삽입하면 된다
+        $("#footer").load("./footer");  // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+    });
+</script>
+<link rel="script" type="text/html" href="../header.html">
+</body>
+</html>

@@ -1,10 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="UTF-8">
+    <title>무무</title>
+    <!--JQuery 관련 CDN Link    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="../static/CSS/border.css" rel="stylesheet">
+
+    <script>
+        function detail(id) {
+            window.location.href = '/communitydetail?id='+id
+        }
+
+    </script>
+
 </head>
 <body>
+<div id="header">
 
+</div>
+
+<main>
+
+
+    <button onclick="window.location.href = '/communityWrite'" style="float: right; margin-right: 20%" >글쓰기</button>
+    <h1 class="con">게시글 목록</h1>
+    <section class="article-list table-common con">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>글번</th>
+                    <th>영화 제목</th>
+                    <th>글 제목</th>
+                    <th>작성자</th>
+
+                </tr>
+            </thead>
+            <tbody>
+            {% for row in post_list %}
+                {% if row["status"] == 0 %}
+                {% set postId = row["postId"] %}
+                {% set movieTitle = row["movieTitle"] %}
+                {% set postTitle = row["postTitle"] %}
+                {% set writer = row["writer"] %}
+                <tr>
+                    <td>{{ postId }}</td>
+                    <td>{{ movieTitle }}</td>
+                    <td onclick="detail({{ postId }})"><a href="#">{{ postTitle }}</a></td>
+                    <td>{{ writer }}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+
+
+<footer></footer>
+
+
+</main>
+
+
+<div id="footer">
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#header").load("./header");  // 원하는 파일 경로를 삽입하면 된다
+        $("#footer").load("./footer");  // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+    });
+</script>
+<link rel="script" type="text/html" href="../header.html">
 </body>
 </html>
