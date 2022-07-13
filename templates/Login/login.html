@@ -275,7 +275,7 @@
                         //항사 이후부터는 서버에 요청을 보낼 때마다 이 쿠키가 계속 딸려 간다.
                         $.cookie('mytoken', response['token'], {path: '/'});
                         //홈화면으로 이동
-                        window.location.replace("/")
+                        window.location.replace("/main")
                     } else {
                         alert(response['msg'])
                     }
