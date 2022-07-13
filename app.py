@@ -220,7 +220,44 @@ def footer():
 
 @app.route('/movieInfo')
 def movieInfo():
-    return render_template('movieInfo/movieInfo.html')
+    movieDetail = request.args.get("movieDetail")
+    print(movieDetail)
+
+    movie_list = list(db.mumu_movie.find({"title":movieDetail}, {'_id': False}))
+    comment_list = list(db.comment_list.find({"movieTitle": movieDetail}, {'_id': False}))
+
+    token = request.cookies.get('mytoken')
+    if token != None:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+        payload = payload.get("id")
+    else:
+        payload = ""
+
+    return render_template('movieInfo/movieInfo.html', movieDetail=movie_list, payload=payload,comment=comment_list)
+
+
+@app.route('/commentSave', methods=["POST"])
+def commentSave():
+    userStar_receive = request.form['userStar_give']
+    comment_receive = request.form['comment_give']
+    movieTitle_receive = request.form['movieTitle_give']
+    userId_receive = request.form['userId_give']
+
+
+    comment_list = list(db.comment_list.find({"movieTitle": movieTitle_receive}, {'_id': False}))
+    count = len(comment_list) + 1
+
+    doc = {
+        'commentId': count,
+        'comment': comment_receive,
+        'commentUserId': userId_receive,
+        'userStar': userStar_receive,
+        'movieTitle': movieTitle_receive
+
+    }
+    db.comment_list.insert_one(doc)
+    return jsonify({'msg': '댓글 저장 완료'})
+
 
 ############################################동건님 소스##############################
 @app.route("/main")
