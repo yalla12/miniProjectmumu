@@ -204,7 +204,14 @@ def delete():
 
 @app.route('/header')
 def header():
-    return render_template('header.html')
+    token = request.cookies.get('mytoken')
+    if token != None:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+        payload = payload.get("id")
+    else:
+        payload = ""
+
+    return render_template('header.html', payload=payload)
 
 
 @app.route('/footer')
