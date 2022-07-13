@@ -263,13 +263,7 @@ def commentSave():
 @app.route("/main")
 def movie_get():
     movie_list = list(db.mumu_movie.find({}, {'_id': False}))
-    try:
-        return render_template("Home/home.html", moviej=movie_list)
-    except exceptions.TemplateAssertionError:
-        pass
-    except exceptions.UndefinedError:
-        pass
-
+    return render_template("Home/home.html", moviej=movie_list)
 
 
 if __name__ == '__main__':
