@@ -1,10 +1,322 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+
+    <title>무무</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        .card-text {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card {
+            margin : 10px auto 10px auto;
+        }
+
+        .toggleSwitch {
+            width: 6rem;
+            height: 3rem;
+            display: block;
+            position: relative;
+            border-radius: 2rem;
+            background-color: #fff;
+            box-shadow: 0 0 1rem 3px rgba(0 0 0 / 15%);
+            cursor: pointer;
+        }
+
+        .toggleSwitch .toggleButton {
+            width: 2.6rem;
+            height: 2.6rem;
+            position: absolute;
+            top: 50%;
+            left: .2rem;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            background: #f03d3d;
+        }
+
+        /* 체크박스가 체크되면 변경 이벤트 */
+        .toggleSwitch.active {
+            background: #f03d3d;
+        }
+
+        .toggleSwitch.active .toggleButton {
+            left: calc(100% - 2.8rem);
+            background: #fff;
+        }
+
+        .toggleSwitch, .toggleButton {
+            transition: all 0.2s ease-in;
+        }
+        .carousel-inner {
+
+            width: 400px;
+            height: 550px;
+            overflow: hidden;
+            margin: 0 auto;
+            border-radius: 20px;
+
+        }
+
+        .carousel-control-prev {
+            width: 300px;
+            height: 550px;
+            margin-left: 450px;
+
+        }
+        .carousel-control-next {
+            width: 300px;
+            height: 550px;
+            margin-right: 450px;
+
+        }
+        .rank-box {
+            margin : 0 auto;
+            width : 350px;
+
+            margin-bottom : 20px;
+
+            {#margin-bottom : 100px;#}
+            {#margin-left : 20px;#}
+
+            border-radius: 10px;
+
+            display : None;
+
+
+        }
+        .zl {
+            margin : 0 auto;
+            width : 300px;
+            margin-bottom : 10px;
+
+
+        }
+        .zl > button {
+
+            border-radius: 50px;
+            border: 2px solid black;
+
+            font-size : 25px;
+
+            width: 300px;
+            height: 60px;
+
+            background-color: white;
+            color: baclk;
+
+        }
+        .zl > button:hover {
+            {#background-color: gray;#}
+            {#color: baclk;#}
+
+            border-radius: 50px;
+            border: 5px solid black;
+        }
+        .small {
+            text-align: center;
+            font-size: 15px;
+            margin-bottom: 400px;
+        }
+        .col {
+            margin: auto;
+        }
+        .jub:hover {
+            background-color: black;
+            color: white;
+
+        }
+        #footer {
+        position: absolute;
+        width: 100%;
+        padding: 0 25px;
+        line-height: 30px;
+        color: #8a8c8f;
+        border-top: 1px solid #dee5e7;
+        background-color: #f2f2f2;
+        text-align: center;
+        bottom: auto;
+    }
+        body {
+            background-image: url('static/horbak.jpg');
+        }
+
+    </style>
+
+
+    <script>
+         $(document).ready(function () {
+           let info = $('#hiddnInfo').val()
+           console.log(info)
+         })
+
+        let fool =0;
+
+        function open_box() {
+            $('#post-box').show()
+        }
+
+        function close_box() {
+            $('#post-box').hide()
+        }
+
+
+        function ya() {
+            fool += 1;
+            if (fool === 1) {
+                {#그림들 고양이로 바꿀것#}
+                {#document.getElementById("man").src = "static/man.jpg";#}
+                {#왜 한장만 바뀌는거야#}
+                {#슬라이드에서 해당 토글을 받으면 포문을 새로 돌리라고 명령하면 되잖아.#}
+                $('#club').empty();
+                $('#club').append('사나이 토글');
+                document.getElementById("man").src = "static/man.jpg";
+                document.body.style.backgroundImage = "url('static/cute.jpg')";
+
+
+
+            }
+            else {
+                {#원상복귀#}
+                {#document.getElementById("man").src = "{{ moviejin.image }}";#}
+                {#이게 문제인데 어떡하지#}
+                $('#club').empty();
+                $('#club').append('슈퍼 겁쟁이 토글');
+                fool = 0;
+                document.getElementById("man").src = "{{ moviej[0].image }}";
+                document.body.style.backgroundImage = "url('static/horbak.jpg')";
+            }
+
+        }
+
+
+
+    </script>
+
 </head>
+
+
 <body>
+<div id="header">
+
+</div>
+
+<input type="hidden" value="{{ moviej }}" id="hiddnInfo">
+
+<div id="club" style="font-size : 15px; margin-left : 12px; color : black;">슈퍼 겁쟁이 토글</div>
+
+<div class="btn btn-default btn-xs">
+    <label for="toggle" class="toggleSwitch"><span class="toggleButton"></span>
+    </label>
+    <script>
+        const $toggle = document.querySelector(".toggleSwitch");
+        $toggle.onclick = () => {
+        $toggle.classList.toggle('active');
+        ya();
+        }
+    </script>
+</div>
+
+<div class="zl"><button onclick="open_box()"> 🔽 horror movie Top6</button></div>
+
+<div class="rank-box" id="post-box"><ol class="list-group list-group-numbered">
+    {% for rank in moviej[:6]|sort(attribute='star', reverse = True) %}
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+{#                <a href="{{ 영화 상세페이지로 }}" target="_blank">#}
+                <div class="fw-bold">{{ rank.title }}</div>
+{#                </a>#}
+                {{ rank.star }}
+            </div>
+        </li>
+    {% endfor %}
+        <button class="jub" onclick="close_box()">접기</button>
+</ol></div>
+
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <a href="https://www.google.com/search?q=%EC%9D%B4%EA%B1%B0+%ED%81%B4%EB%A6%AD+%EC%99%9C+%ED%95%A8%3F&newwindow=1&sxsrf=ALiCzsbhc4AhaO8cntxlJaBeEin8LoStCQ%3A1657626832540&ei=0GDNYuLYIOuImgbPgJ-wDA&ved=0ahUKEwjigJiUpfP4AhVrhMYKHU_AB8YQ4dUDCA4&oq=%EC%9D%B4%EA%B1%B0+%ED%81%B4%EB%A6%AD+%EC%99%9C+%ED%95%A8%3F&gs_lcp=Cgdnd3Mtd2l6EAw6BwgAEEcQsANKBAhBGABKBAhGGABQpAhYqBBg-iFoAnABeACAAY4BiAHJBZIBAzAuNpgBAKABAcgBCsABAQ&sclient=gws-wiz"
+               target="_blank">
+                <img src="static/aaa.jpg" width="400" height="550" class="d-block w-100" alt="...">
+                </a>
+        </div>
+        {% for moviejin in moviej %}
+            <div class="carousel-item">
+                    {#                    <a href="{{ 영화 상세페이지로 }}" target="_blank">#}
+                    <img id="man" src="{{ moviejin.image }}" width="400" height="550" class="d-block w-100" alt="...">
+                    {#                    </a>#}
+            </div>
+        {% endfor %}
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<div class="small">포스터를 클릭하시면 상세페이지로 이동합니다.</div>
+
+<div  class="row row-cols-1 row-cols-md-3 g-5" id="cards-box">
+    {% for moviejin in moviej %}
+{#    {% for moviejin in moviej[:6]|sort(attribute='star', reverse = True) %}#}
+    <div class="col" style="width: 18rem;">
+        <div class="card h-100">
+{#            <a href = "{{ 영화상세페이지로 }}" target="_blank">#}
+            <img id="man2" src="{{ moviejin.image }}" style="width: 238px;" height="400" class="card-img-top">
+{#            </a>#}
+            <div class="card-body">
+                <h5 class="card-title">{{ moviejin.title }}</h5>
+                <p class="card-text">{{ moviejin.desc }}</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">{{ moviejin.star }}</small>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+<div id="footer">
+
+</div>
 
 </body>
+
+<script>
+    $(document).ready(function () {
+        $("#header").load("./header");  // 원하는 파일 경로를 삽입하면 된다
+        $("#footer").load("./footer");  // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+    });
+</script>
+<link rel="script" type="text/html" href="../header.html">
+
 </html>

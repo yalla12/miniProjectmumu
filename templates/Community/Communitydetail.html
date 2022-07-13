@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>무무</title>
+    <!--JQuery 관련 CDN Link    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="../static/CSS/write.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script>
+         $(document).ready(function () {
+             let cookieId = $('#hiddinInfo').val()
+             let postWriter = $('#writer').val()
+             console.log(cookieId  ,  postWriter)
+
+            if (cookieId == postWriter) {
+                alert('성공')
+                $('#save1').show()
+                $('#delete1').show()
+            } else {
+                alert('실패')
+                $('#save1').hide()
+                $('#delete1').hide()
+            }
+         })
+        function cancel() {
+            window.location.href = "/community"
+        }
+        function update(id) {
+            let postTitle = $('#postTitle').val()
+            let content = $('#content').val()
+            let postId = id;
+            $.ajax({
+                type: "POST",
+                url: "/update",
+                data: {postTitle_give: postTitle, content_give: content, postId_give: postId },
+                success: function (response) { // 성공하면
+                    alert(response["msg"]);
+                    window.location.href = "/community"
+                }
+            })
+        }
+
+       function PostDelete(id){
+            let postId = id;
+            $.ajax({
+                type: "POST",
+                url: "/delete",
+                data: {postId_give: postId },
+                success: function (response) { // 성공하면
+                    alert(response["msg"]);
+                    window.location.href = "/community"
+                }
+            })
+        }
+    </script>
+
+    <style>
+        button {
+            width: 20%;
+        }
+        body {
+            background-color: cornsilk;
+            min-height: 100vh;
+        }
+    </style>
+
+</head>
+<body>
+<div id="header">
+</div>
+
+<main>
+    <div class="ui_container">
+
+        <div class="ui_border">
+            <div class="border_cont">
+                <input type="text" value="{{ post[0]['postTitle'] }}" class="inq_field" id="postTitle" style="font-weight : bold;"/>
+                 <input type="text" value="{{ post[0]['movieTitle'] }}" class="inq_field" id="movieTitle" style="font-weight : bold;" disabled/>
+                <input type="text" value="{{ post[0]['writer'] }}" class="inq_field" id="writer" style="font-weight : bold;" disabled/>
+                <textarea name="" id="content" cols="30" rows="10" style="font-weight : bold;">{{ post[0]['content'] }}</textarea>
+            </div>
+            <div class="btn_area">
+{#                <input type="button" id="save1" value="저장" onclick="update({{ post[0]['postId'] }})" class="ui_btn btn_inline btn_emph">#}
+{#                <input type="button" value="취소" onclick="cancel()" class="ui_btn btn_inline">#}
+{#                <input type="button" id="delete1" value="삭제" onclick="PostDelete({{ post[0]['postId'] }})" class="ui_btn btn_inline btn_emph">#}
+                <button type="button" id="save1" value="저장" onclick="update({{ post[0]['postId'] }})" class="btn btn-outline-danger">저장</button>
+                <button type="button" value="취소" onclick="cancel()" class="btn btn-outline-danger">취소</button>
+                <button type="button" id="delete1" value="삭제" onclick="PostDelete({{ post[0]['postId'] }})" class="btn btn-outline-danger">삭제</button>
+            </div>
+            <br>
+        </div>
+    </div>
+</main>
+
+    <input type="hidden" value="{{ payload }}" id="hiddinInfo">
+
+<div id="footer">
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#header").load("./header");  // 원하는 파일 경로를 삽입하면 된다
+        $("#footer").load("./footer");  // 추가 인클루드를 원할 경우 이런식으로 추가하면 된다
+    });
+</script>
+<link rel="script" type="text/html" href="../header.html">
+</body>
+</html>
