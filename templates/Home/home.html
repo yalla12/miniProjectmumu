@@ -12,9 +12,6 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
 
-    <script>document.body.style.backgroundImage = "url('./static/bak.jpg')";</script>
-
-
 
     <title>무무</title>
 
@@ -160,6 +157,9 @@
         text-align: center;
         bottom: auto;
     }
+        body {
+            background-image: url('static/horbak.jpg');
+        }
 
     </style>
 
@@ -185,6 +185,7 @@
                 $('#club').empty();
                 $('#club').append('사나이 토글');
                 document.getElementById("man").src = "static/man.jpg";
+                document.body.style.backgroundImage = "url('static/cute.jpg')";
 
 
 
@@ -197,6 +198,7 @@
                 $('#club').append('슈퍼 겁쟁이 토글');
                 fool = 0;
                 document.getElementById("man").src = "{{ moviej[0].image }}";
+                document.body.style.backgroundImage = "url('static/horbak.jpg')";
             }
 
         }
