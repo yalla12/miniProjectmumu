@@ -163,7 +163,6 @@
 
     </style>
 
-
     <script>
          $(document).ready(function () {
            let info = $('#hiddnInfo').val()
@@ -208,6 +207,15 @@
             }
 
         }
+
+        function movieDetail(data) {
+            let movieTitle = data
+            let movieInfo = movieTitle.title
+
+            console.log(movieInfo.length)
+            window.location.href = '/movieInfo?movieDetail='+movieInfo
+        }
+
 
 
 
@@ -288,10 +296,10 @@
     {% for moviejin in moviej %}
 {#    {% for moviejin in moviej[:6]|sort(attribute='star', reverse = True) %}#}
     <div class="col" style="width: 18rem;">
-        <div class="card h-100">
-{#            <a href = "{{ 영화상세페이지로 }}" target="_blank">#}
+        <div class="card h-100" onclick="movieDetail({{ moviejin }})">
+
             <img id="man2" src="{{ moviejin.image }}" style="width: 238px;" height="400" class="card-img-top">
-{#            </a>#}
+
             <div class="card-body">
                 <h5 class="card-title">{{ moviejin.title }}</h5>
                 <p class="card-text">{{ moviejin.desc }}</p>

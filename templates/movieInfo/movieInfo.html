@@ -50,16 +50,66 @@
 
         }
 
+<<<<<<< HEAD
 
+=======
+        .card {
+            width: 95%;
+            max-width: 95%;
+            margin: auto;
+        }
+>>>>>>> ce16c228440521815c37c10770ca19faba2b201e
     </style>
+
+    <script>
+        $(document).ready(function () {
+            let userId = $('#hiddnInfo2').val()
+
+            if (userId == "" || userId == null) {
+                $('#commentBtn').hide()
+            } else {
+                $('#commentBtn').show()
+            }
+
+         })
+
+        function save_comment() {
+            let userStar = $('#star').val()
+            let comment = $('#comment').val()
+            let movieTitle = $('#hiddnInfo').val()
+            let userId = $('#hiddnInfo2').val()
+
+            $.ajax({
+                type: 'POST',
+                url: '/commentSave',
+                data: {userStar_give: userStar, comment_give: comment,movieTitle_give: movieTitle, userId_give: userId},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            })
+
+        }
+    </script>
+
 </head>
 
 <body>
+<<<<<<< HEAD
     <div id="header"></div>
 
+=======
+
+<input type="hidden" value="{{ movieDetail[0]["title"] }}" id="hiddnInfo">
+<input type="hidden" value="{{ payload }}" id="hiddnInfo2">
+
+<div id="header">
+</div>
+>>>>>>> ce16c228440521815c37c10770ca19faba2b201e
 <div class="mycards">
-    <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
+    <div class="row row-cols-1 row-cols-md-10 g-4" id="cards-box">
         <div class="col">
+<<<<<<< HEAD
             <div class="card h-100">
                 <img src="https://movie-phinf.pstatic.net/20220615_63/1655270906406BGdFF_JPEG/movie_image.jpg?type=m203_290_2"
                      class="card-img-top">
@@ -68,12 +118,76 @@
                     <p class="card-text">영화 설명</p>
                     <p>⭐⭐⭐⭐⭐</p>
                     <p class="mycomment">내용</p>
+=======
+            <div class="card h-100" >
+                <img src="{{ movieDetail[0]["image"] }}"
+                     class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">제목 : {{ movieDetail[0]["title"] }}</h5>
+                    <p>평론가 별점 : {{ movieDetail[0]["star"] }}</p>
+                    <p>유저 별점 : {{ movieDetail[0]["ustar"] }} </p>
+
+>>>>>>> ce16c228440521815c37c10770ca19faba2b201e
                 </div>
             </div>
         </div>
+        <div class="card h-100"  >
+            <label><b>줄거리</b></label><br>
+                 <p class="card-text">{{ movieDetail[0]["desc"] }}</p>
+        </div>
+        <br>
     </div>
+    <br>
 </div>
 
+<<<<<<< HEAD
+=======
+<div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupSelect01">별점</label>
+        <select class="form-select" id="star">
+            <option selected>-- 선택하기 --</option>
+            <option value="1">⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+        </select>
+    </div>
+    <div class="form-floating">
+        <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
+        <label for="floatingTextarea2">코멘트</label>
+    </div>
+        <button onclick="save_comment()" id="commentBtn" type="button" class="btn btn-dark">댓글달기</button>
+
+    <br><br>
+    {% for con in comment %}
+    <div class="card">
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p>{{ con.comment }}</p>
+                {% if con.userStar == "1" %}
+                <p>별점 : ⭐</p>
+                {% endif %}
+                {% if con.userStar == "2" %}
+                <p>별점 : ⭐⭐</p>
+                {% endif %}
+                {% if con.userStar == "3" %}
+                <p>별점 : ⭐⭐⭐</p>
+                {% endif %}
+                {% if con.userStar == "4" %}
+                <p>별점 : ⭐⭐⭐⭐</p>
+                {% endif %}
+                {% if con.userStar == "5" %}
+                <p>별점 : ⭐⭐⭐⭐⭐</p>
+                {% endif %}
+                <footer class="blockquote-footer">{{ con.commentUserId }}</footer>
+            </blockquote>
+        </div>
+    </div>
+    {% endfor %}
+
+    <br><br>
+>>>>>>> ce16c228440521815c37c10770ca19faba2b201e
 
 <div id="footer">
 </div>
