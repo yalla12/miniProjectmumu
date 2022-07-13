@@ -34,7 +34,7 @@ def home():
         #실제 유저의 정보를 가져와
         user_info = db.users.find_one({"username": payload["id"]})
         #그리고 클라이언트에게 보내줘
-        return render_template('index.html', user_info=user_info)
+        return render_template('Home/home.html', user_info=user_info)
 
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
@@ -220,13 +220,57 @@ def footer():
 
 @app.route('/movieInfo')
 def movieInfo():
-    return render_template('movieInfo/movieInfo.html')
+    movieDetail = request.args.get("movieDetail")
+    print(movieDetail)
+
+    movie_list = list(db.mumu_movie.find({"title":movieDetail}, {'_id': False}))
+    comment_list = list(db.comment_list.find({"movieTitle": movieDetail}, {'_id': False}))
+
+    token = request.cookies.get('mytoken')
+    if token != None:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+        payload = payload.get("id")
+    else:
+        payload = ""
+
+    return render_template('movieInfo/movieInfo.html', movieDetail=movie_list, payload=payload,comment=comment_list)
+
+
+@app.route('/commentSave', methods=["POST"])
+def commentSave():
+    userStar_receive = request.form['userStar_give']
+    comment_receive = request.form['comment_give']
+    movieTitle_receive = request.form['movieTitle_give']
+    userId_receive = request.form['userId_give']
+
+
+    comment_list = list(db.comment_list.find({"movieTitle": movieTitle_receive}, {'_id': False}))
+    count = len(comment_list) + 1
+
+    doc = {
+        'commentId': count,
+        'comment': comment_receive,
+        'commentUserId': userId_receive,
+        'userStar': userStar_receive,
+        'movieTitle': movieTitle_receive
+
+    }
+    db.comment_list.insert_one(doc)
+    return jsonify({'msg': '댓글 저장 완료'})
+
 
 ############################################동건님 소스##############################
 @app.route("/main")
 def movie_get():
     movie_list = list(db.mumu_movie.find({}, {'_id': False}))
-    return render_template("Home/home.html", moviej=movie_list)
+    try:
+        return render_template("Home/home.html", moviej=movie_list)
+    except exceptions.TemplateAssertionError:
+        pass
+    except exceptions.UndefinedError:
+        pass
+
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
