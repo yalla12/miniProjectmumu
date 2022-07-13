@@ -161,6 +161,13 @@
             background-image: url('static/horbak.jpg');
         }
 
+        .clubimage {
+            border-radius: 50px;
+            border: 0px solid black;
+
+
+        }
+
     </style>
 
 
@@ -189,7 +196,7 @@
                 {#왜 한장만 바뀌는거야#}
                 {#슬라이드에서 해당 토글을 받으면 포문을 새로 돌리라고 명령하면 되잖아.#}
                 $('#club').empty();
-                $('#club').append('사나이 토글');
+                document.getElementById("club").src = "static/fool.jpg";
                 document.getElementById("man").src = "static/man.jpg";
                 document.body.style.backgroundImage = "url('static/cute.jpg')";
 
@@ -200,9 +207,8 @@
                 {#원상복귀#}
                 {#document.getElementById("man").src = "{{ moviejin.image }}";#}
                 {#이게 문제인데 어떡하지#}
-                $('#club').empty();
-                $('#club').append('슈퍼 겁쟁이 토글');
                 fool = 0;
+                document.getElementById("club").src = "static/man.jpg";
                 document.getElementById("man").src = "{{ moviej[0].image }}";
                 document.body.style.backgroundImage = "url('static/horbak.jpg')";
             }
@@ -223,7 +229,8 @@
 
 <input type="hidden" value="{{ moviej }}" id="hiddnInfo">
 
-<div id="club" style="font-size : 15px; margin-left : 12px; color : black;">슈퍼 겁쟁이 토글</div>
+{#<div id="club" style="font-size : 15px; margin-left : 12px; color : black;">슈퍼 겁쟁이 토글</div>#}
+<div><img class="clubimage" id="club" src="../static/man.jpg"></div>
 
 <div class="btn btn-default btn-xs">
     <label for="toggle" class="toggleSwitch"><span class="toggleButton"></span>
