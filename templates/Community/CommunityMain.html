@@ -8,6 +8,18 @@
     <link href="../static/CSS/border.css" rel="stylesheet">
 
     <script>
+        $(document).ready(function () {
+            let id = $('#hiddinInfo').val()
+
+            console.log(id)
+
+            if (id == "" || id == null) {
+                $('#newPost').hide()
+            } else {
+                $('#newPost').show()
+            }
+        })
+
         function detail(id) {
             window.location.href = '/communitydetail?id='+id
         }
@@ -27,6 +39,11 @@
             overflow: hidden; /* 내용이 길면 감춤니다 */
         }
 
+        body {
+            background-color: cornsilk;
+            min-height: 100vh;
+        }
+
     </style>
 </head>
 <body>
@@ -35,8 +52,8 @@
 </div>
 
 <main>
-
-    <button onclick="window.location.href = '/communityWrite'" style="float: right; margin-right: 20%" >글쓰기</button>
+    <br>
+    <button id="newPost" onclick="window.location.href = '/communityWrite'" style="float: right; margin-right: 20%;width: 10%;" >글쓰기</button>
     <h1 class="con">게시글 목록</h1>
     <section class="article-list table-common con">
             <table border="1" id="board"  >
@@ -68,6 +85,11 @@
             </table>
         </div>
     </section>
+
+    <br>
+    <br>
+
+    <input type="hidden" value="{{ payload }}" id="hiddinInfo">
 
 </main>
 

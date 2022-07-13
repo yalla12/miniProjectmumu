@@ -1,30 +1,54 @@
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<!--JQuery 관련 CDN Link    -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-<div class="mytitle">
-    <div class="container">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                <svg class="bi me-2" width="40" height="32">
-                    <use xlink:href="#bootstrap"></use>
-                </svg>
-                <span class="fs-4">📽무무</span>
-            </a>
+    body {
+        {#background-color: RGBA(230, 52, 78, 20);#}
+        {#min-height: 100vh;#}
+    }
 
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a href="/loginpage" class="nav-link active" aria-current="page">로그인</a></li>
-                <li class="nav-item"><a href="/signuppage" class="nav-link">회원가입</a></li>
+    .hero is-white {
+        background-color: RGBA(230, 52, 78, 20);
+    }
 
-            </ul>
-        </header>
+
+    .title {
+        font-weight: 800;
+        font-size: 5rem;
+        font-family: 'Black And White Picture', sans-serif;
+        text-align: center;
+
+    }
+
+    .subtitle {
+        font-size: 2rem;
+        font-family: 'Noto Serif KR', serif;
+        text-align: center;
+
+    }
+
+    .is-sparta {
+        color: #e8344e !important;
+
+    }
+
+    .mybutton3 {
+       float: right;
+        width: 8%;
+        background-color: red;
+        color: white;
+        font-size: large;
+    }
+
+
+</style>
+
+<section class="hero is-white">
+    <div class="hero-body has-text-centered"
+         style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://img.huffingtonpost.com/asset/5c7cb49f36000006186b03e9.jpeg?ops=scalefit_630_noupscale');">
+        <h1 class="title is-sparta" onclick="window.location.href='/main'">무무MUMU</h1>
+        <h3 class="subtitle is-sparta" c>무시무시한무서운 영화리뷰채널
+            <button class="mybutton3" onclick="window.location.href='/community'"> 커뮤니티</button>
+            <button class="mybutton3" onclick="window.location.href='/login'"> 로그인</button>
+        </h3>
     </div>
-
-</div>
-
-
+</section>
