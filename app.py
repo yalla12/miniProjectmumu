@@ -1,3 +1,5 @@
+import json
+
 from pymongo import MongoClient
 import jwt
 import datetime
@@ -15,11 +17,11 @@ app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 SECRET_KEY = 'SPARTA'
 
 # from pymongo import MongoClient
-# client = MongoClient('localhost', 27017)
-# db = client.dbsparta
+client = MongoClient('localhost', 27017)
+db = client.dbsparta
 
-client = MongoClient('mongodb+srv://test:sparta@cluster0.fciykbx.mongodb.net/?retryWrites=true&w=majority')
-db = client.dbMUMU
+# client = MongoClient('mongodb+srv://test:sparta@cluster0.fciykbx.mongodb.net/?retryWrites=true&w=majority')
+# db = client.dbMUMU
 
 # 홈화면
 @app.route('/')
@@ -43,7 +45,7 @@ def home():
 def login():
     #jason형식으로 값을 가져온다
     msg = request.args.get("msg")
-    return render_template('login.html', msg=msg)
+    return render_template('Login/login.html', msg=msg)
 
 #로그인 API
 @app.route('/sign_in', methods=['POST'])
@@ -114,12 +116,28 @@ def check_dup():
 ############################ 선호 소스 ######################################
 @app.route('/community')
 def community():
+    token = request.cookies.get('mytoken')
+    if token != None:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+        payload = payload.get("id")
+    else:
+        payload = ""
+
+    print(payload)
+
     post_list = list(db.postList.find({}, {'_id': False}))
-    return render_template('Community/CommunityMain.html', post_list=post_list)
+    return render_template('Community/CommunityMain.html', post_list=post_list , payload=payload)
 
 @app.route('/communityWrite')
 def communityWrite():
-    return render_template('Community/CommunityWrite.html')
+    token = request.cookies.get('mytoken')
+    if token != None:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+        payload = payload.get("id")
+    else:
+        payload = ""
+
+    return render_template('Community/CommunityWrite.html', payload=payload)
 
 
 @app.route('/communitydetail')
@@ -127,8 +145,16 @@ def communitydetail():
     id_receive = request.args.get("id")
     id = int(id_receive)
     post = list(db.postList.find({'postId':id}, {'_id': False}))
-    print(post)
-    return render_template('Community/Communitydetail.html', post=post)
+
+    token = request.cookies.get('mytoken')
+    if token != None:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+        payload = payload.get("id")
+    else:
+        payload = ""
+
+
+    return render_template('Community/Communitydetail.html', post=post, payload=payload)
 
 @app.route('/write', methods=["POST"])
 def write():
