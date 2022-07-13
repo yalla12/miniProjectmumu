@@ -46,26 +46,17 @@
             margin: 20px auto 0px auto;
             width: 95%;
             max-width: 1200px;
-
-
         }
 
-<<<<<<< HEAD
-
-=======
         .card {
             width: 95%;
             max-width: 95%;
             margin: auto;
         }
-<<<<<<< HEAD
->>>>>>> ce16c228440521815c37c10770ca19faba2b201e
-=======
 
         body {
             background-image: url('static/horbak.jpg');
         }
->>>>>>> 7f787df31008919b6c78b472891aa14e69d38fb7
     </style>
 
     <script>
@@ -102,30 +93,15 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-    <div id="header"></div>
-
-=======
 
 <input type="hidden" value="{{ movieDetail[0]["title"] }}" id="hiddnInfo">
 <input type="hidden" value="{{ payload }}" id="hiddnInfo2">
 
 <div id="header">
 </div>
->>>>>>> ce16c228440521815c37c10770ca19faba2b201e
 <div class="mycards">
     <div class="row row-cols-1 row-cols-md-10 g-4" id="cards-box">
         <div class="col">
-<<<<<<< HEAD
-            <div class="card h-100">
-                <img src="https://movie-phinf.pstatic.net/20220615_63/1655270906406BGdFF_JPEG/movie_image.jpg?type=m203_290_2"
-                     class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">마녀</h5>
-                    <p class="card-text">영화 설명</p>
-                    <p>⭐⭐⭐⭐⭐</p>
-                    <p class="mycomment">내용</p>
-=======
             <div class="card h-100" >
                 <img src="{{ movieDetail[0]["image"] }}"
                      class="card-img-top">
@@ -134,7 +110,6 @@
                     <p>평론가 별점 : {{ movieDetail[0]["star"] }}</p>
                     <p>유저 별점 : {{ movieDetail[0]["ustar"] }} </p>
 
->>>>>>> ce16c228440521815c37c10770ca19faba2b201e
                 </div>
             </div>
         </div>
@@ -147,8 +122,6 @@
     <br>
 </div>
 
-<<<<<<< HEAD
-=======
 <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupSelect01">별점</label>
         <select class="form-select" id="star">
@@ -194,7 +167,6 @@
     {% endfor %}
 
     <br><br>
->>>>>>> ce16c228440521815c37c10770ca19faba2b201e
 
 <div id="footer">
 </div>
