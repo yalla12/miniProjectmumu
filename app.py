@@ -226,7 +226,14 @@ def movieInfo():
 @app.route("/main")
 def movie_get():
     movie_list = list(db.mumu_movie.find({}, {'_id': False}))
-    return render_template("Home/home.html", moviej=movie_list)
+    try:
+        return render_template("Home/home.html", moviej=movie_list)
+    except exceptions.TemplateAssertionError:
+        pass
+    except exceptions.UndefinedError:
+        pass
+
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
