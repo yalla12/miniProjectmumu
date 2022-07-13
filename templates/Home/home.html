@@ -179,6 +179,7 @@
     <script>
          $(document).ready(function () {
            let info = $('#hiddnInfo').val()
+           var blog1 = '';
            console.log(info)
          })
 
@@ -202,7 +203,8 @@
                 {#슬라이드에서 해당 토글을 받으면 포문을 새로 돌리라고 명령하면 되잖아.#}
                 $('#club').empty();
                 document.getElementById("club").src = "static/fool.jpg";
-                document.getElementById("man").src = "static/man.jpg";
+                $("[id='man']").attr("src", "static/man.jpg");
+                $("[id='man2']").attr("src", "static/man.jpg");
                 document.body.style.backgroundImage = "url('static/cute.jpg')";
                 document.getElementById("font").style ="color: black";
 
@@ -215,9 +217,11 @@
                 {#이게 문제인데 어떡하지#}
                 fool = 0;
                 document.getElementById("club").src = "static/man.jpg";
-                document.getElementById("man").src = "{{ moviej[0].image }}";
+                {#document.getElementById("man").src = "{{ moviej[0].image }}";#}
                 document.body.style.backgroundImage = "url('static/horbak.jpg')";
-                document.getElementById("font").style ="color: white";
+                document.getElementById("font").style = "color: white";
+                window.location.reload()
+
             }
 
         }
@@ -288,7 +292,7 @@
                 </a>
         </div>
         {% for moviejin in moviej %}
-            <div class="carousel-item">
+            <div class="carousel-item" onclick="movieDetail({{ moviejin }})">
                     {#                    <a href="{{ 영화 상세페이지로 }}" target="_blank">#}
                     <img id="man" src="{{ moviejin.image }}" width="400" height="550" class="d-block w-100" alt="...">
                     {#                    </a>#}
