@@ -10,8 +10,6 @@ db = client.dbsparta
 
 app = Flask(__name__)
 
-
-# rendering (html 파일 넘겨주기)
 @app.route('/community')
 def community():
     post_list = list(db.postList.find({}, {'_id': False}))
@@ -83,6 +81,12 @@ def header():
 @app.route('/footer')
 def footer():
     return render_template('footer.html')
+
+##########################################################
+
+@app.route('/movieInfo')
+def movieInfo():
+    return render_template('movieInfo/movieInfo.html')
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

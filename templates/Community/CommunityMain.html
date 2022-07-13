@@ -14,6 +14,20 @@
 
     </script>
 
+    <style>
+        #board {
+            table-layout: fixed;
+            border-collapse: collapse;
+            border: 1px solid #888;
+
+        }
+        td {
+            text-overflow: ellipsis; /* 위에 설정한 100px 보다 길면 말줄임표처럼 표시합니다. */
+            white-space: nowrap; /* 줄바꿈을 하지 않습니다. */
+            overflow: hidden; /* 내용이 길면 감춤니다 */
+        }
+
+    </style>
 </head>
 <body>
 <div id="header">
@@ -22,43 +36,38 @@
 
 <main>
 
-
     <button onclick="window.location.href = '/communityWrite'" style="float: right; margin-right: 20%" >글쓰기</button>
     <h1 class="con">게시글 목록</h1>
     <section class="article-list table-common con">
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>글번</th>
-                    <th>영화 제목</th>
-                    <th>글 제목</th>
-                    <th>작성자</th>
+            <table border="1" id="board"  >
+                <thead>
+                    <tr>
+                        <th>글번</th>
+                        <th>영화 제목</th>
+                        <th>글 제목</th>
+                        <th>작성자</th>
 
-                </tr>
-            </thead>
-            <tbody>
-            {% for row in post_list %}
-                {% if row["status"] == 0 %}
-                {% set postId = row["postId"] %}
-                {% set movieTitle = row["movieTitle"] %}
-                {% set postTitle = row["postTitle"] %}
-                {% set writer = row["writer"] %}
-                <tr>
-                    <td>{{ postId }}</td>
-                    <td>{{ movieTitle }}</td>
-                    <td onclick="detail({{ postId }})"><a href="#">{{ postTitle }}</a></td>
-                    <td>{{ writer }}</td>
-                </tr>
-                {% endif %}
-            {% endfor %}
-            </tbody>
-        </table>
+                    </tr>
+                </thead>
+                <tbody >
+                {% for row in post_list %}
+                    {% if row["status"] == 0 %}
+                    {% set postId = row["postId"] %}
+                    {% set movieTitle = row["movieTitle"] %}
+                    {% set postTitle = row["postTitle"] %}
+                    {% set writer = row["writer"] %}
+                    <tr >
+                        <td>{{ postId }}</td>
+                        <td>{{ movieTitle }}</td>
+                        <td onclick="detail({{ postId }})"><a href="#">{{ postTitle }}</a></td>
+                        <td>{{ writer }}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </section>
-
-
-
-<footer></footer>
-
 
 </main>
 
