@@ -12,75 +12,17 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
 
-    <title>스파르타 피디아</title>
+    <script>document.body.style.backgroundImage = "url('./static/bak.jpg')";</script>
+
+
+
+    <title>무무</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
     <style>
         * {
             font-family: 'Gowun Dodum', sans-serif;
-        }
-
-        .mytitle {
-            width: 100%;
-            height: 250px;
-
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://movie-phinf.pstatic.net/20210715_95/1626338192428gTnJl_JPEG/movie_image.jpg');
-            background-position: center;
-            background-size: cover;
-
-            color: white;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mytitle > button {
-            width: 200px;
-            height: 50px;
-
-            background-color: transparent;
-            color: white;
-
-            border-radius: 50px;
-            border: 1px solid white;
-
-            margin-top: 10px;
-        }
-
-        .mytitle > button:hover {
-            border: 2px solid white;
-        }
-
-
-        .mycards {
-            margin: 20px auto 0px auto;
-            width: 95%;
-            max-width: 1200px;
-        }
-
-        .mypost {
-            width: 95%;
-            max-width: 500px;
-            margin: 20px auto 20px auto;
-            padding: 20px;
-            box-shadow: 0px 0px 5px 0px gray;
-
-        }
-
-        .mybtns {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-
-            margin-top: 20px;
-        }
-
-        .mybtns > button {
-            margin-right: 10px;
         }
 
         .card-text {
@@ -183,7 +125,7 @@
             width: 300px;
             height: 60px;
 
-            background-color: transparent;
+            background-color: white;
             color: baclk;
 
         }
@@ -207,7 +149,17 @@
             color: white;
 
         }
-
+        #footer {
+        position: absolute;
+        width: 100%;
+        padding: 0 25px;
+        line-height: 30px;
+        color: #8a8c8f;
+        border-top: 1px solid #dee5e7;
+        background-color: #f2f2f2;
+        text-align: center;
+        bottom: auto;
+    }
 
     </style>
 
@@ -218,8 +170,8 @@
             $('#post-box').show()
         }
 
-         function close_box() {
-             $('#post-box').hide()
+        function close_box() {
+            $('#post-box').hide()
         }
 
 
@@ -232,10 +184,9 @@
                 {#슬라이드에서 해당 토글을 받으면 포문을 새로 돌리라고 명령하면 되잖아.#}
                 $('#club').empty();
                 $('#club').append('사나이 토글');
+                document.getElementById("man").src = "static/man.jpg";
 
-                {% for moviejin in moviej %}
-                    let
-                {% endfor %}
+
 
             }
             else {
@@ -245,44 +196,52 @@
                 $('#club').empty();
                 $('#club').append('슈퍼 겁쟁이 토글');
                 fool = 0;
+                document.getElementById("man").src = "{{ moviej[0].image }}";
             }
 
         }
+
+
+
     </script>
 
 </head>
 
 
 <body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 <div class="mytitle">
-    <h1>무시무시한 무서운 영화</h1>
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+                <span class="fs-4">📽무무</span>
+            </a>
+
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="/loginpage" class="nav-link active" aria-current="page">로그인</a></li>
+                <li class="nav-item"><a href="/signuppage" class="nav-link">회원가입</a></li>
+
+            </ul>
+        </header>
+    </div>
+
 </div>
-{#<div class="mypost" id="post-box">#}
-{#    <div class="form-floating mb-3">#}
-{#        <input id="url" type="email" class="form-control" placeholder="name@example.com">#}
-{#        <label>영화URL</label>#}
-{#    </div>#}
-{#    <div class="input-group mb-3">#}
-{#        <label class="input-group-text" for="inputGroupSelect01">별점</label>#}
-{#        <select class="form-select" id="star">#}
-{#            <option selected>-- 선택하기 --</option>#}
-{#            <option value="1">⭐</option>#}
-{#            <option value="2">⭐⭐</option>#}
-{#            <option value="3">⭐⭐⭐</option>#}
-{#            <option value="4">⭐⭐⭐⭐</option>#}
-{#            <option value="5">⭐⭐⭐⭐⭐</option>#}
-{#        </select>#}
-{#    </div>#}
-{#    <div class="form-floating">#}
-{#        <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>#}
-{#        <label for="floatingTextarea2">코멘트</label>#}
-{#    </div>#}
-{#    <div class="mybtns">#}
-{#        <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>#}
-{#        <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>#}
-{#    </div>#}
-{#</div>#}
-<div id="club" style="font-size : 15px; margin-left : 12px;">슈퍼 겁쟁이 토글</div>
+
+
+
+
+
+
+
+
+
+<div id="club" style="font-size : 15px; margin-left : 12px; color : black;">슈퍼 겁쟁이 토글</div>
 
 <div class="btn btn-default btn-xs">
     <label for="toggle" class="toggleSwitch"><span class="toggleButton"></span>
@@ -291,11 +250,10 @@
         const $toggle = document.querySelector(".toggleSwitch");
         $toggle.onclick = () => {
         $toggle.classList.toggle('active');
-        ya()
+        ya();
         }
     </script>
 </div>
-
 
 <div class="zl"><button onclick="open_box()"> 🔽 horror movie Top6</button></div>
 
@@ -346,10 +304,11 @@
 
 <div  class="row row-cols-1 row-cols-md-3 g-5" id="cards-box">
     {% for moviejin in moviej %}
+{#    {% for moviejin in moviej[:6]|sort(attribute='star', reverse = True) %}#}
     <div class="col" style="width: 18rem;">
         <div class="card h-100">
 {#            <a href = "{{ 영화상세페이지로 }}" target="_blank">#}
-            <img src="{{ moviejin.image }}" style="width: 238px;" height="400" class="card-img-top">
+            <img id="man2" src="{{ moviejin.image }}" style="width: 238px;" height="400" class="card-img-top">
 {#            </a>#}
             <div class="card-body">
                 <h5 class="card-title">{{ moviejin.title }}</h5>
@@ -362,6 +321,29 @@
     </div>
     {% endfor %}
 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="footer">
+
+<nav>
+    <a href='https://anotherproblem.tistory.com/6' target='_blank'>Blog</a> |
+    <a href='https://github.com/yalla12/miniProjectmumu.git' target='_blank'>Github</a>
+</nav>
+<p>
+    <span>개발자 : 신선호, 장창균, 원중희, 이동건</span><br/>
+    <span>이메일 : yalla12@naver.com</span><br/>
+    <span>Copyright 2022. mumu. All Rights Reserved.</span>
+</p>
 </div>
 
 
