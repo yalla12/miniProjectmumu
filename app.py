@@ -34,7 +34,7 @@ def home():
         #실제 유저의 정보를 가져와
         user_info = db.users.find_one({"username": payload["id"]})
         #그리고 클라이언트에게 보내줘
-        return render_template('index.html', user_info=user_info)
+        return render_template('Home/home.html', user_info=user_info)
 
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
@@ -263,7 +263,14 @@ def commentSave():
 @app.route("/main")
 def movie_get():
     movie_list = list(db.mumu_movie.find({}, {'_id': False}))
-    return render_template("Home/home.html", moviej=movie_list)
+    try:
+        return render_template("Home/home.html", moviej=movie_list)
+    except exceptions.TemplateAssertionError:
+        pass
+    except exceptions.UndefinedError:
+        pass
+
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
