@@ -1,9 +1,13 @@
 <meta charset="utf-8">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+
 <style>
 
     body {
-        {#background-color: RGBA(230, 52, 78, 20);#}
-        {#min-height: 100vh;#}
+    {#background-color: RGBA(230, 52, 78, 20);#}{#min-height: 100vh;#}
     }
 
     .hero is-white {
@@ -32,7 +36,7 @@
     }
 
     .mybutton3 {
-       float: right;
+        float: right;
         width: 8%;
         background-color: red;
         color: white;
@@ -54,6 +58,13 @@
             $('#login3').css('display', 'none')
         }
     })
+
+    function sign_out() {
+        $.removeCookie('mytoken', {path: '/'});
+        alert('로그아웃!')
+        window.location.href = "/login"
+    }
+
 </script>
 
 <section class="hero is-white">
@@ -63,9 +74,9 @@
         <h3 class="subtitle is-sparta" c>무시무시한무서운 영화리뷰채널
             <button class="mybutton3" onclick="window.location.href='/community'"> 커뮤니티</button>
             <button class="mybutton3" id="login3" onclick="window.location.href='/login'"> 로그인</button>
-            <button class="mybutton3" id="logout3" style="display: none"> 로그아웃</button>
+            <button class="mybutton3" id="logout3" onclick="sign_out()"> 로그아웃</button>
         </h3>
     </div>
 </section>
 
- <input type="hidden" value="{{ payload }}" id="hiddinInfo">
+<input type="hidden" value="{{ payload }}" id="hiddinInfo">
