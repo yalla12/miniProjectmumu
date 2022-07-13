@@ -92,12 +92,10 @@
         }
         .rank-box {
             margin : 0 auto;
-            width : 350px;
+            max-width : 350px;
+            width : 100%;
 
             margin-bottom : 20px;
-
-            {#margin-bottom : 100px;#}
-            {#margin-left : 20px;#}
 
             border-radius: 10px;
 
@@ -123,7 +121,7 @@
             height: 60px;
 
             background-color: white;
-            color: baclk;
+            color: black;
 
         }
         .zl > button:hover {
@@ -158,13 +156,21 @@
         bottom: auto;
     }
         body {
-            background-image: url('static/horbak.jpg');
+            background-image: url('/static/horbak.jpg');
         }
 
         .clubimage {
             border-radius: 50px;
             border: 0px solid black;
 
+            width : 150px;
+            height : 150px;
+
+            margin-left : 20px;
+
+        }
+        .toggleclub {
+            margin-left : 30px;
 
         }
 
@@ -199,6 +205,7 @@
                 document.getElementById("club").src = "static/fool.jpg";
                 document.getElementById("man").src = "static/man.jpg";
                 document.body.style.backgroundImage = "url('static/cute.jpg')";
+                document.getElementById("font").style ="color: black";
 
 
 
@@ -211,6 +218,7 @@
                 document.getElementById("club").src = "static/man.jpg";
                 document.getElementById("man").src = "{{ moviej[0].image }}";
                 document.body.style.backgroundImage = "url('static/horbak.jpg')";
+                document.getElementById("font").style ="color: white";
             }
 
         }
@@ -232,17 +240,20 @@
 {#<div id="club" style="font-size : 15px; margin-left : 12px; color : black;">슈퍼 겁쟁이 토글</div>#}
 <div><img class="clubimage" id="club" src="../static/man.jpg"></div>
 
-<div class="btn btn-default btn-xs">
-    <label for="toggle" class="toggleSwitch"><span class="toggleButton"></span>
-    </label>
-    <script>
-        const $toggle = document.querySelector(".toggleSwitch");
-        $toggle.onclick = () => {
-        $toggle.classList.toggle('active');
-        ya();
-        }
-    </script>
+<div class="toggleclub">
+    <div class="btn btn-default btn-xs">
+        <label for="toggle" class="toggleSwitch"><span class="toggleButton"></span>
+        </label>
+        <script>
+            const $toggle = document.querySelector(".toggleSwitch");
+            $toggle.onclick = () => {
+                $toggle.classList.toggle('active');
+                ya();
+            }
+        </script>
+    </div>
 </div>
+
 
 <div class="zl"><button onclick="open_box()"> 🔽 horror movie Top6</button></div>
 
@@ -289,7 +300,7 @@
     </button>
 </div>
 
-<div class="small">포스터를 클릭하시면 상세페이지로 이동합니다.</div>
+<div class="small" style="color: white;" id="font">포스터를 클릭하시면 상세페이지로 이동합니다.</div>
 
 <div  class="row row-cols-1 row-cols-md-3 g-5" id="cards-box">
     {% for moviejin in moviej %}
