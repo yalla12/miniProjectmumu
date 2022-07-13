@@ -1,5 +1,4 @@
 import json
-
 from pymongo import MongoClient
 import jwt
 import datetime
@@ -17,12 +16,14 @@ app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 SECRET_KEY = 'SPARTA'
 
 # from pymongo import MongoClient
-client = MongoClient('localhost', 27017)
+# client = MongoClient('localhost', 27017)
+# db = client.dbsparta
+
+client = MongoClient('mongodb+srv://test:sparta@cluster0.fciykbx.mongodb.net/Cluster0?retryWrites=true&w=majority')
 db = client.dbsparta
 
-# client = MongoClient('mongodb+srv://test:sparta@cluster0.fciykbx.mongodb.net/?retryWrites=true&w=majority')
-# db = client.dbMUMU
 
+###################################################################창균님 소스####################
 # 홈화면
 @app.route('/')
 def home():
@@ -214,5 +215,16 @@ def footer():
 def movieInfo():
     return render_template('movieInfo/movieInfo.html')
 
+############################################동건님 소스##############################
+@app.route("/main")
+def movie_get():
+    movie_list = list(db.mumu_movie.find({}, {'_id': False}))
+    return render_template("Home/home.html", moviej=movie_list)
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
+
+
+
+
+
