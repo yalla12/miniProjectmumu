@@ -7,6 +7,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="../static/CSS/border.css" rel="stylesheet">
 
+    <!-- og(링크설명) 및 falcon(텝사진) -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <meta property="og:title" content="MUMU 무시무시한 무서운 영화"/>
+    <meta property="og:description" content="mini project for Web Plus"/>
+    <meta property="og:image" content="{{ url_for('static', filename='ogimg.png') }}"/>
+
+
     <script>
         $(document).ready(function () {
             let id = $('#hiddinInfo').val()
