@@ -72,8 +72,10 @@ def sign_in():
 
 
         #토큰을 만들어서 SECRET_KEY로 암호화해줌
-        #decode가 필요없어서 주석처리함
-        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')#.decode('utf-8')
+
+        #decode는 서버배포시에 포함시키며, 로컬에서 테스트할 때는 제외해 준다.
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')#.decode('utf-8')
+
         #그리고 이 토큰을 클라이언트에게 넘겨줌
         #post와 get모두 return으로 클라이언트에게 데이터를 넘겨준다
         return jsonify({'result': 'success', 'token': token})
