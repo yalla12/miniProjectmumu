@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
 <<<<<<< HEAD
+<<<<<<< HEAD
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.9 (venv)" project-jdk-type="Python SDK" />
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (movie)" project-jdk-type="Python SDK" />
+>>>>>>> 7b632c5439b1f10998466b2466239acb4bc308c9
+=======
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (mumu) (2)" project-jdk-type="Python SDK" />
   <component name="PyPackaging">
     <option name="earlyReleasesAsUpgrades" value="true" />
@@ -8,4 +14,5 @@
 =======
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (movie)" project-jdk-type="Python SDK" />
 >>>>>>> 8cab0fe8ef4f3b91e882bb4b0fd54e9d44bbb474
+>>>>>>> 28aa9b19db4293150bd7e017c95f72de2d691d02
 </project>

@@ -73,7 +73,13 @@ def sign_in():
 
         #토큰을 만들어서 SECRET_KEY로 암호화해줌
 
+<<<<<<< HEAD
+        #decode가 필요없어서 주석처리함
+
+=======
+>>>>>>> 28aa9b19db4293150bd7e017c95f72de2d691d02
         #decode는 서버배포시에 포함시키며, 로컬에서 테스트할 때는 제외해 준다.
+
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
 
         #그리고 이 토큰을 클라이언트에게 넘겨줌
@@ -283,8 +289,3 @@ def movie_get():
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
-
-
-
-
-
