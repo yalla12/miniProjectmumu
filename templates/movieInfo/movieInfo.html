@@ -13,6 +13,7 @@
             crossorigin="anonymous"></script>
 
     <title>무무</title>
+<<<<<<< HEAD
 
     <!-- og(링크설명) 및 falcon(텝사진) -->
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
@@ -20,8 +21,17 @@
     <meta property="og:title" content="MUMU 무시무시한 무서운 영화"/>
     <meta property="og:description" content="mini project for Web Plus"/>
     <meta property="og:image" content="{{ url_for('static', filename='ogimg.png') }}"/>
+=======
+>>>>>>> 28aa9b19db4293150bd7e017c95f72de2d691d02
 
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+     <!-- og(링크설명) 및 falcon(텝사진) -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <meta property="og:title" content="MUMU 무시무시한 무서운 영화"/>
+    <meta property="og:description" content="mini project for Web Plus"/>
+    <meta property="og:image" content="{{ url_for('static', filename='ogimg.png') }}"/>
 
     <style>
         * {
@@ -115,7 +125,7 @@
                 <div class="card-body">
                     <h5 class="card-title">제목 : {{ movieDetail[0]["title"] }}</h5>
                     <p>평론가 별점 : {{ movieDetail[0]["star"] }}</p>
-                    <p>유저 별점 : {{ movieDetail[0]["ustar"] }} </p>
+                    <p>유저 별점 : {{ score }} </p>
 
                 </div>
             </div>
