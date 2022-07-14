@@ -24,10 +24,11 @@ db = client.dbsparta
 
 
 ###################################################################창균님 소스####################
-# 홈화면
-@app.route('/')
+# 로그인화면
+@app.route('/log')
 def home():
     token_receive = request.cookies.get('mytoken')
+
     try:
         #payload에서 아이디를 꺼내와서
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
@@ -275,7 +276,7 @@ def commentSave():
 
 
 ############################################동건님 소스##############################
-@app.route("/main")
+@app.route("/")
 def movie_get():
     movie_list = list(db.mumu_movie.find({}, {'_id': False}))
     return render_template("Home/home.html", moviej=movie_list)
