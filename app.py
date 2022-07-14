@@ -72,8 +72,10 @@ def sign_in():
 
 
         #토큰을 만들어서 SECRET_KEY로 암호화해줌
+
         #decode는 서버배포시에 포함시키며, 로컬에서 테스트할 때는 제외해 준다.
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
+
         #그리고 이 토큰을 클라이언트에게 넘겨줌
         #post와 get모두 return으로 클라이언트에게 데이터를 넘겨준다
         return jsonify({'result': 'success', 'token': token})
@@ -220,11 +222,24 @@ def footer():
 
 @app.route('/movieInfo')
 def movieInfo():
-    movieDetail = request.args.get("movieDetail")
-    print(movieDetail)
 
+    # 영화 메인에서 포스터를 눌렀을 때, 전송된 영화 타이틀 데이터를 받는다.
+    movieDetail = request.args.get("movieDetail")
+
+    #영화 제목에 해당하는 영화 정보 가져오기
     movie_list = list(db.mumu_movie.find({"title":movieDetail}, {'_id': False}))
+
+    #영화 제목에 해당하는 영화 댓글 가져오기
     comment_list = list(db.comment_list.find({"movieTitle": movieDetail}, {'_id': False}))
+
+    score = 0
+    for comment in comment_list:
+        score = score + int(comment["userStar"])
+
+    # round 함수 소수 둘째짜리에서 반올림하여 소수 첫째자리 까지만 나타내기
+    # 유저평점 = 평점 총 점수 / 댓글 수
+    if len(comment_list) != 0:
+        score = round(score / len(comment_list), 1)
 
     token = request.cookies.get('mytoken')
     if token != None:
@@ -233,7 +248,7 @@ def movieInfo():
     else:
         payload = ""
 
-    return render_template('movieInfo/movieInfo.html', movieDetail=movie_list, payload=payload,comment=comment_list)
+    return render_template('movieInfo/movieInfo.html', movieDetail=movie_list, payload=payload,comment=comment_list,score=score)
 
 
 @app.route('/commentSave', methods=["POST"])
@@ -263,13 +278,7 @@ def commentSave():
 @app.route("/main")
 def movie_get():
     movie_list = list(db.mumu_movie.find({}, {'_id': False}))
-    try:
-        return render_template("Home/home.html", moviej=movie_list)
-    except exceptions.TemplateAssertionError:
-        pass
-    except exceptions.UndefinedError:
-        pass
-
+    return render_template("Home/home.html", moviej=movie_list)
 
 
 if __name__ == '__main__':
